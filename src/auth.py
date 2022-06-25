@@ -1,6 +1,4 @@
 import tweepy
-import time
-import datetime
 import os
 
 class TwitterAuth:
@@ -18,11 +16,9 @@ class TwitterAuth:
 
 
 class TwitterBot:
-    def __init__(self):
-        self.last_reply_id = 1
-        self.bot_id = None
+    def __init__(self, api):
+        self.api = api
 
-    def get_bot(self, api):
-        # bot의 user obj 반환
-        bot = api.verify_credentials()
-        self.bot_id = bot.id
+    def get_bot(self):
+        bot = self.api.verify_credentials()
+        return bot.id
