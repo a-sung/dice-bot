@@ -51,24 +51,32 @@ class Mention:
             return
 
         # get dice value
-        dice = random.randint(1, 99)
+        dice = random.randint(1, 100)
+        print("dice:", dice)
 
         # results success or fail
         row = cell.row
         col = cell.col
+        success = {"normal":-1, "hard":-1, "extreme":-1, "critical":1}
         if row < 10:
             # 특성치
-            success = sh.cell(row, col + 2).value
+            success["normal"] = sh.cell(row, col+2).value
+            success["hard"] = sh.cell(row, col+4).value
+            success["extreme"] = sh.cell(row+1, col+4).value
             print(success)
         elif row < 39:
             # 기능치
-            success = sh.cell(row, col + 5).value
+            success["normal"] = sh.cell(row, col+5).value
+            success["hard"] = sh.cell(row, col+6).value
+            success["extreme"] = sh.cell(row, col+7).value
             print(success)
         else:
             # 전투
             pass
+        self.make_reply(keyword, success)
 
-
+    def make_reply(self, keyword, success):
+        if success["normal"] == -1 : return
 
 
 
