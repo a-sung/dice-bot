@@ -58,7 +58,7 @@ class Mention:
         row = cell.row
         col = cell.col
         success = {"normal":-1, "hard":-1, "extreme":-1, "critical":1}
-        if row < 10:
+        if row < 13:
             # 특성치
             success["normal"] = sh.cell(row, col+2).value
             success["hard"] = sh.cell(row, col+4).value
@@ -101,7 +101,7 @@ class Mention:
         nowDatetime = now.strftime('%Y-%m-%d %H:%M:%S')
         msg = f'다시 시도해 주시기 바랍니다.\n\n{nowDatetime}'
         if isSuccess is not None:
-            msg = f'{name}의 {keyword} 판정\n주사위 값: {dice}\n판정 결과: {isSuccess}\n\n{nowDatetime}'
+            msg = f'{name}의 {keyword}판정\n주사위 값: {dice}\n판정 결과: {isSuccess}\n\n{nowDatetime}'
         return msg
 
     def reply_mention(self, mention, message):
