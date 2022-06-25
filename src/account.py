@@ -1,4 +1,5 @@
 import tweepy
+import random
 
 class Mention:
     def __init__(self, api, bot, gc):
@@ -36,9 +37,23 @@ class Mention:
         k1 = text.find("[")
         k2 = text.find("]")
         keyword = text[k1+1:k2]
+        if k1 == -1 or k2 == -1 or k1 > k2:
+            # if keyword is not in mention, return
+            print("keyword is not in your mention")
+            return
 
         # find keyword in spreadsheet
         cell = sh.find(keyword)
+
+        # keyword is not in spreadsheet, return
+        if cell is None:
+            print("keyword is not in spreadsheet")
+            return
+
+        # get dice value
+        dice = random.randint(1, 99)
+
+        # results success or fail
         row = cell.row
         col = cell.col
         if row < 10:
