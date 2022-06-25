@@ -30,10 +30,29 @@ class Mention:
                     pass
 
     def check_keywords(self, mention, sh):
-        # TODO: mention id와 bot id가 동일할 경우 return
+        # find keyword in mention text
         text = mention.text
+        keyword = ""
         k1 = text.find("[")
         k2 = text.find("]")
+        keyword = text[k1+1:k2]
+
+        # find keyword in spreadsheet
+        cell = sh.find(keyword)
+        row = cell.row
+        col = cell.col
+        if row < 10:
+            # 특성치
+            success = sh.cell(row, col + 2).value
+            print(success)
+        elif row < 39:
+            # 기능치
+            success = sh.cell(row, col + 5).value
+            print(success)
+        else:
+            # 전투
+            pass
+
 
 
 

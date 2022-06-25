@@ -11,6 +11,7 @@ def main():
 
     m = Mention(api, bot, gc)
     while True:
+        print("start")
         m.get_mentions()
         m.check_mentions()
         time.sleep(20)
