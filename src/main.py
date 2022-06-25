@@ -13,7 +13,7 @@ def main():
     while True:
         m.get_mentions()
         m.check_mentions()
-        time.sleep(20)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()
