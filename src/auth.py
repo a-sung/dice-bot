@@ -21,4 +21,4 @@ class TwitterBot:
 
     def get_bot(self):
         bot = self.api.verify_credentials()
-        return bot.id
+        return bot
