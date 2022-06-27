@@ -1,4 +1,5 @@
 def find(text):
+    text = text.replace(' ', '')
     k1 = text.find('[')
     k2 = text.find(']')
 
