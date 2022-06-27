@@ -12,8 +12,13 @@ def find(text):
         return None
 
     if 'd' in key:
-        # todo: random dice (ex. 1d4, 1d3+1)
-        print("Error: not supported")
-        return None
+        key_list = list(key)
+        if len(key_list) == 3 and key_list[0].isdigit() and key_list[1] == 'd' and key_list[2].isdigit():
+            return key_list, details
+        if len(key_list) == 5 and key_list[0].isdigit() and key_list[1] == 'd' and key_list[2].isdigit() and (key_list[3] == '+' or key_list[3] == '-') and key_list[4].isdigit():
+            return key_list, details
+
+
+    # todo: keyword of edit spread sheet
 
     return key, details
