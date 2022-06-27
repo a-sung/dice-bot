@@ -1,4 +1,4 @@
-def determine(gc, name, keyword, details=None):
+def determine(gc, name, value, keyword, details=None):
     sh = open(gc, name)
     cell = find(sh, keyword)
     if cell is None:
@@ -21,7 +21,21 @@ def determine(gc, name, keyword, details=None):
         # battle
         pass
 
-    return success
+    if success["normal"] == -1:
+        return None
+    if value == 1:
+        return "대성공"
+    elif value <= int(success["extreme"]):
+        return "극단적 성공"
+    elif value <= int(success["hard"]):
+        return "어려운 성공"
+    elif value <= int(success["normal"]):
+        return "성공"
+    else:
+        if value == 100 or (int(success["normal"]) < 50 and value > 95):
+            return "대실패"
+        else:
+            return "실패"
 
 
 def open(gc, name):
