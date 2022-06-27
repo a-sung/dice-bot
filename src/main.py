@@ -2,6 +2,7 @@ from src.dicebot.auth.twitter import TwitterAuth, TwitterBot
 from src.dicebot.auth.google import GoogleAuth
 from src.dicebot.bot import tweet, keyword, sheet, dice
 from datetime import datetime
+from pytz import timezone
 import time
 
 
@@ -17,7 +18,7 @@ def main():
         for mention in mentions:
 
             # get time of replying mention
-            now = datetime.now()
+            now = datetime.now(timezone('Asia/Seoul'))
             nowDatetime = now.strftime('%Y-%m-%d %H:%M:%S')
             author = mention.author
             text = None
