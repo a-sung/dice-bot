@@ -1,6 +1,8 @@
-from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 class GoogleAuth():
     def __init__(self):
