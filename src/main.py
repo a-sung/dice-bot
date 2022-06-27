@@ -1,6 +1,6 @@
-from src.auth.twitter import TwitterAuth, TwitterBot
-from src.auth.google import GoogleAuth
-from account import Mention
+from src.dicebot.auth.twitter import TwitterAuth, TwitterBot
+from src.dicebot.auth.google import GoogleAuth
+from src.dicebot.account import Mention
 import time
 
 def main():
