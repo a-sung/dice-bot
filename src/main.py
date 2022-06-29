@@ -24,6 +24,9 @@ def main():
             text = None
 
             key, details = keyword.find(mention.text)
+            if key is None:
+                continue
+
             if 'd' in key:
                 # Determining outcome of dice
                 if len(key) == 3:

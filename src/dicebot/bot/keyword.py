@@ -10,7 +10,7 @@ def find(text):
         # if keyword is not in mention, return
         # todo: exception, logging
         print("Error: keyword is not in your mention")
-        return None
+        return None, None
 
     if 'd' in key:
         key_list = list(key)
