@@ -38,14 +38,16 @@ def main():
             elif details is None:
                 # Determining outcome of stats, skills or battle
                 value = dice.roll()
-                outcome = sheet.determine(gc, mention.author.screen_name, value, key)
+                sh = sheet.Sheet(gc, mention.author.screen_name, value, key)
+                outcome = sh.result()
                 if outcome is None:
                     continue
-                text = f'@{author.screen_name}{author.name}의 {key}판정\n주사위 값: {value}\n판정 결과: {outcome}\n\n{nowDatetime}'
+                text = f'@{author.screen_name}{author.name}의 {key}판정\n{outcome}\n\n{nowDatetime}'
 
             # reply mention
             if text is not None:
                 tw.reply(text, mention.id_str)
+                # print(text)
         time.sleep(60)
 
 if __name__ == "__main__":
