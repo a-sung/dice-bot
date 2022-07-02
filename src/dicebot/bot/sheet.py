@@ -19,7 +19,9 @@ def determine(gc, name, value, keyword, details=None):
         success["extreme"] = sh.cell(row, col + 7).value
     else:
         # battle
-        pass
+        success["normal"] = sh.cell(row, col + 4).value
+        success["hard"] = sh.cell(row, col + 5).value
+        success["extreme"] = sh.cell(row, col + 6).value
 
     if success["normal"] == -1:
         return None
