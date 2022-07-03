@@ -32,11 +32,27 @@ class Sheet():
             # battle
             text = ''
             for i in range (0, int(self.sh.cell(row, col + 18).value)):
+                damage_dice = list(self.sh.cell(row, col + 9))
+                damage_bonus_cell = self.find("피해보너스")
+                damage_bonus_dice = list(self.sh.cell(damage_bonus_cell.row, damage_bonus_cell + 3))
+
+                damage = 0
+                bonus_damage = 0
                 # todo: 성공 시 데미지 판정
                 value = dice.roll()
                 self.judgeBattle(row, col)
                 outcome = self.determine(value)
-                text += f'공격 {i+1}회\n주사위 값:{value}\n판정 결과:{outcome}\n\n'
+                text += f'공격 {i + 1}회\n주사위 값:{value}\n판정 결과:{outcome}\n'
+                success_degree = ["성공", "어려운 성공", "극단적 성공"]
+                # todo: 피해보너스, ndm+r 데미지 판정, 대성공
+                if outcome in success_degree :
+                    damage = dice.roll(damage_dice[0], damage_dice[2])
+                    if damage_bonus_dice is not 0:
+                        bonus_damage = dice.roll(damage_bonus_dice[0], damage_bonus_dice[2])
+                    full_damage = damage + bonus_damage
+                    text += f'데미지: {damage}+{bonus_damage} = {full_damage}\n\n'
+
+
             return text
 
     def judgeStat(self, row, col):
@@ -79,8 +95,8 @@ class Sheet():
             pass
         return sh
 
-    def find(self, sh, keyword):
-        cell = sh.find(keyword)
+    def find(self, keyword):
+        cell = self.sh.find(keyword)
         if cell is None:
             print("Error: keyword is not in spreadsheet")
             return None
