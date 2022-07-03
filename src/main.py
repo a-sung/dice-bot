@@ -34,15 +34,14 @@ def main():
                 else:
                     value = dice.roll(int(key[0]), int(key[2]), key[3], int(key[4]))
                 key = ''.join(key)
-                text = f'@{author.screen_name}{author.name}의 {key}판정\n주사위 값: {value}\n\n{nowDatetime}'
+                text = f'@{author.screen_name} {author.name}의 {key}판정\n주사위 값: {value}\n\n{nowDatetime}'
             elif details is None:
                 # Determining outcome of stats, skills or battle
-                value = dice.roll()
-                sh = sheet.Sheet(gc, mention.author.screen_name, value, key)
+                sh = sheet.Sheet(gc, mention.author.screen_name, key)
                 outcome = sh.result()
                 if outcome is None:
                     continue
-                text = f'@{author.screen_name}{author.name}의 {key}판정\n{outcome}\n\n{nowDatetime}'
+                text = f'@{author.screen_name} {author.name}의 {key}판정\n{outcome}{nowDatetime}'
 
             # reply mention
             if text is not None:
