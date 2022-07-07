@@ -7,7 +7,12 @@ def determine(gc, name, value, keyword, details=None):
     row = cell.row
     col = cell.col
     success = {"normal": -1, "hard": -1, "extreme": -1, "critical": 1}
-    if row < 13:
+    if keyword == "이성":
+        success["normal"] = sh.cell(row + 1, col + 2).value
+        success["hard"] = int(success["normal"]//2)
+        success["extreme"] = int(success["normal"]//5)
+
+    elif row < 13:
         # stats
         success["normal"] = sh.cell(row, col + 2).value
         success["hard"] = sh.cell(row, col + 4).value
