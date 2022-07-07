@@ -9,8 +9,8 @@ def determine(gc, name, value, keyword, details=None):
     success = {"normal": -1, "hard": -1, "extreme": -1, "critical": 1}
     if keyword == "이성":
         success["normal"] = sh.cell(row + 1, col + 2).value
-        success["hard"] = int(success["normal"]//2)
-        success["extreme"] = int(success["normal"]//5)
+        success["hard"] = int(success["normal"])//2
+        success["extreme"] = int(success["normal"])//5
 
     elif row < 13:
         # stats
