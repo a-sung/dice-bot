@@ -9,7 +9,7 @@ def find(text):
     if k1 == -1 or k2 == -1 or k1 > k2:
         # if keyword is not in mention, return
         # todo: exception, logging
-        print("Error: keyword is not in your mention")
+        print("Error: keyword is not in your mention,", k1, k2)
         return None, None
 
     if 'd' in key:

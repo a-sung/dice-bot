@@ -14,6 +14,14 @@ class Sheet():
 
         row = self.cell.row
         col = self.cell.col
+
+        if self.keyword == "이성":
+            value = dice.roll()
+            self.judgeSanc(row, col)
+            outcome = self.determine(value)
+            return f'주사위 값: {value}\n판정 결과: {outcome}\n\n'
+
+
         if row < 13:
             # stats
             value = dice.roll()
@@ -69,6 +77,11 @@ class Sheet():
         self.success["normal"] = self.sh.cell(row, col + 6).value
         self.success["hard"] = self.sh.cell(row, col + 7).value
         self.success["extreme"] = self.sh.cell(row, col + 8).value
+
+    def judgeSanc(self, row, col):
+        self.success["normal"] = self.sh.cell(row + 1, col + 2).value
+        self.success["hard"] = int(self.success["normal"]) // 2
+        self.success["extreme"] = int(self.success["normal"]) // 5
 
     def determine(self, value):
         if self.success["normal"] == -1:
