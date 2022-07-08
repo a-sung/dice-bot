@@ -45,11 +45,11 @@ def determine(gc, name, value, keyword, details=None):
 
 def open(gc, name):
     try:
-        sh = gc.worksheet(name)
+        sheet = gc.worksheet(name)
     except:
         print(f"Error: {name} not founded in spreadsheet")
         pass
-    return sh
+    return sheet
 
 
 def find(sh, keyword):
